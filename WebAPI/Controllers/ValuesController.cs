@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using WebAPI.Common;
+using WebAPI.Convertor;
 
 namespace WebAPI.Controllers
 {
@@ -21,14 +24,18 @@ namespace WebAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return "LemmatizatorAPI";
+            return "LemmatizatorAPI1";
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<string> Post([FromBody] string value)
         {
-        }
+			var request = JsonConvert.DeserializeObject<JSONRequest>(value);
+			var uniqueTextConvertor = new UniqueTextConvertor(request.Exacts);
+			var str = uniqueTextConvertor.Convert(request.Content);
+			return str;
+		}
 
         // PUT api/values/5
         [HttpPut("{id}")]
