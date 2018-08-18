@@ -24,7 +24,7 @@ namespace WebAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return "LemmatizatorAPI1";
+            return "LemmatizatorAPI_git";
         }
 
         // POST api/values
