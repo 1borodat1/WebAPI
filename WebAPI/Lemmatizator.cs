@@ -15,7 +15,7 @@ namespace WebAPI
 			using (stream) {
 				_lemmatizer = new Lemmatizer(stream);
 			}
-		}
+		} 
 		private Lemmatizator() {
 		}
 
