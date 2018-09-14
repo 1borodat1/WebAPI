@@ -1,7 +1,7 @@
 ﻿namespace WebAPI.Controllers
 {
 	using Microsoft.AspNetCore.Mvc;
-	using WebAPI.TextBuilder;
+	using WebAPI.TextProcessing;
 
 	[Route("api/[controller]")]
     [ApiController]
@@ -10,10 +10,11 @@
 		// POST api/lemmatization
 		[HttpPost]
 		public ActionResult<string> Post([FromBody] string content) {
-			var builder = new ContentBuilder(content)
-				.ClearMarks()
-				.Lemmatize();
-			return builder.GetText();
+			var textLemmatizator = new TextLemmatizer();
+			textLemmatizator.AddTextProcessing(new ClearNewLines());
+			textLemmatizator.AddTextProcessing(new ClearTextPunctuator());
+			return textLemmatizator.Process(content);
 		}
+
 	}
 }

@@ -1,13 +1,11 @@
-﻿using LemmaSharp.Classes;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace WebAPI
+﻿namespace WebAPI
 {
-    public sealed class Lemmatizator
+	using LemmaSharp.Classes;
+	using System.IO;
+
+	#region Class: Lemmatizator
+
+	public sealed class Lemmatizator
 	{
 		private static readonly Lemmatizer _lemmatizer;
 		static Lemmatizator() {
@@ -15,7 +13,8 @@ namespace WebAPI
 			using (stream) {
 				_lemmatizer = new Lemmatizer(stream);
 			}
-		} 
+		}
+
 		private Lemmatizator() {
 		}
 
@@ -23,4 +22,7 @@ namespace WebAPI
 			return _lemmatizer;
 		}
 	}
+
+	#endregion
+
 }
